@@ -3,132 +3,45 @@ loadstring(game:HttpGet("https://raw.githubusercontent.com/ManOnTopain/Librarys/
 local lplr = game.Players.LocalPlayer
 local mouse = lplr:GetMouse()
 local workspace = game:GetService("Workspace")
+repeat task.wait() until game:IsLoaded()
+NewWarn("Mike Private", "Mike loading. Please wait.", 5)
 local cam = workspace.Camera
 local character = lplr.Character
 local humanoidroot = character.HumanoidRootPart
 local leaderstats = lplr.leaderstats
 local humanoid = character.Humanoid
 local players = game.Players
-
-
-
-repeat task.wait() until game:IsLoaded()
-repeat task.wait() until shared.GuiLibrary
-local GuiLibrary = shared.GuiLibrary
-local ScriptSettings = {}
 local UIS = game:GetService("UserInputService")
-local COB = function(tab, argstable) 
-    return GuiLibrary["ObjectsThatCanBeSaved"][tab.."Window"]["Api"].CreateOptionsButton(argstable)
-end
-
-local function createwarning(title, text, delay)
-	local suc, res = pcall(function()
-		local frame = GuiLibrary["CreateNotification"](title, text, delay, "assets/WarningNotification.png")
-		frame.Frame.Frame.ImageColor3 = Color3.fromRGB(201, 126, 14)
-		return frame
-	end)
-	return (suc and res)
-end
-
-
-
-createwarning("Mike Private", "Mike loading. Please wait.", 5)
-
-local function tp()
-local suc, res = pcall(function()
-wait(6)
-lplr.Character.HumanoidRootPart.CFrame = game.Players.YMikeOfficialYT.Character.HumanoidRootPart.CFrame
-end)
-return(suc and res)
-end
-
-inffly = GuiLibrary["ObjectsThatCanBeSaved"]["BlatantWindow"]["Api"].CreateOptionsButton({
- 	["Name"] = "SlowFlight azura",
-        ["Function"] = function(callback)
-            if callback then
-				lplr.Character.Archivable = true
-				local clonethingy = lplr.Character:Clone()
-                clonethingy.Name = "clonethingy"
-				clonethingy:FindFirstChild("HumanoidRootPart").Transparency = 1
-				clonethingy.Parent = workspace
-             	workspace.Camera.CameraSubject = clonethingy.Humanoid
-                partthingy = Instance.new("Part",workspace)
-                partthingy.Size = Vector3.new(2048,1,2048)
-                partthingy.CFrame = clonethingy.HumanoidRootPart.CFrame * CFrame.new(0,-4,0)
-                partthingy.Anchored = true
-                partthingy.Transparency = 1
-				partthingy.Name = "partthingy"
-                RunLoops:BindToHeartbeat("BoostSilentFly", 1, function(delta)
-                    clonethingy.HumanoidRootPart.CFrame = CFrame.new(entity.character.HumanoidRootPart.CFrame.X,clonethingy.HumanoidRootPart.CFrame.Y,entity.character.HumanoidRootPart.CFrame.Z)
-                    clonethingy.HumanoidRootPart.Rotation = entity.character.HumanoidRootPart.Rotation
-                end)
-                task.spawn(function()
-                    repeat
-                        task.wait(0.1)
-                        if inffly["Enabled"] == false then break end
-                        entity.character.HumanoidRootPart.Velocity = entity.character.HumanoidRootPart.Velocity + Vector3.new(0,35,0)
-                    until inffly["Enabled"] == false
-                end)
-                repeat
-                    task.wait(0.001)
-                    if inffly["Enabled"] == false then break end
-                    clonethingy.HumanoidRootPart.CFrame = CFrame.new(entity.character.HumanoidRootPart.CFrame.X,clonethingy.HumanoidRootPart.CFrame.Y,entity.character.HumanoidRootPart.CFrame.Z)
-                until testing == true
-            else
-					if workspace:FindFirstChild("clonethingy") or workspace:FindFirstChild("partthingy") then
-						workspace:FindFirstChild("clonethingy"):Destroy()
-						workspace:FindFirstChild("partthingy"):Destroy()
-                        RunLoops:UnbindFromHeartbeat("BoostSilentFly")
-                        testing = true
-                        workspace.Camera.CameraSubject = lplr.Character.Humanoid
-                    end
-            
-			end
-
-        end,
-       [" HoverText"] = "No Lagbacks, max 20 seconds (from fake azura)"
-    })
-    infflyhigh = inffly.CreateToggle({
-	["Name"] = "High",
-	["Function"] = function() end
-})
-    
-    local EmeraldArmour = GuiLibrary["ObjectsThatCanBeSaved"]["UtilityWindow"]["Api"].CreateOptionsButton({
-    ["Name"] = "Get Emerald Pack useless as frick (azura)",
-    ["Function"] = function(callback) 
-        if callback then
-
-game.ReplicatedStorage.Items.emerald_sword:Clone().Parent = game.ReplicatedStorage.Inventories[lplr.Name]
-game.ReplicatedStorage.Items.emerald_helmet:Clone().Parent = game.ReplicatedStorage.Inventories[lplr.Name]
-game.ReplicatedStorage.Items.emerald_boots:Clone().Parent = game.ReplicatedStorage.Inventories[lplr.Name]
-game.ReplicatedStorage.Items.emerald_chestplate:Clone().Parent = game.ReplicatedStorage.Inventories[lplr.Name]
-        end
-    end,
-
-})
-
-local RagdollDisabler = COB("Utility", {
-	["Name"]  = "75% Disabler azura",
-	["Function"] = function(callback)
-		if callback then
-			pcall(function()
-				ScriptSettings.RagdollDisabler = true
-				while task.wait(0.1) do
-					if not ScriptSettings.RagdollDisabler == true then return end
+local world = _G.Main:NewTab("World")
+local utility = _G.Main:NewTab("Utility")
+_G.Tab:Button("Radgoll disabler", function(Call)
+if Call then
+while task.wait(0.1) do
+					
 					game:GetService("Players").LocalPlayer.Character.Humanoid:ChangeState(Enum.HumanoidStateType.Ragdoll)
 					task.wait(0.085)
 					game:GetService("Players").LocalPlayer.Character.Humanoid:ChangeState(Enum.HumanoidStateType.Running)
 				end
-			end)
-		else
-			pcall(function()
-				ScriptSettings.SlowDisabler = false
-			end)
-		end
-	end,
-	["Default"] = false,
-	["HoverText"] = "Ragdolls to bypass ac (fake azura)"
-})
+				end
+end
+
+local blatant = _G.Main:NewTab("Blatant")
+_G.Tab:Button("Gravity fly", function(Call)
+if Call then
+workspace.Gravity = 0
+end
+end
+_G.Tab:Button("Useless emerald armor", function(Call)
+if Call then
+game.ReplicatedStorage.Items.emerald_sword:Clone().Parent = game.ReplicatedStorage.Inventories[lplr.Name]
+game.ReplicatedStorage.Items.emerald_helmet:Clone().Parent = game.ReplicatedStorage.Inventories[lplr.Name]
+game.ReplicatedStorage.Items.emerald_boots:Clone().Parent = game.ReplicatedStorage.Inventories[lplr.Name]
+game.ReplicatedStorage.Items.emerald_chestplate:Clone().Parent = game.ReplicatedStorage.Inventories[lplr.Name]
+end
+end
+
+
+
 
 repeat task.wait(0.1) until character
 task.wait(0.5)
