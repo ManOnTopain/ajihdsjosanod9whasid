@@ -1,0 +1,286 @@
+--cb23332e3ba060c4da5a11f5c5eea283--
+local lplr = game.Players.LocalPlayer
+local mouse = lplr:GetMouse()
+local workspace = game:GetService("Workspace")
+local cam = workspace.Camera
+local character = lplr.Character
+local humanoidroot = character.HumanoidRootPart
+local leaderstats = lplr.leaderstats
+local humanoid = character.Humanoid
+local players = game.Players
+
+
+
+repeat task.wait() until game:IsLoaded()
+repeat task.wait() until shared.GuiLibrary
+local GuiLibrary = shared.GuiLibrary
+local ScriptSettings = {}
+local UIS = game:GetService("UserInputService")
+local COB = function(tab, argstable) 
+    return GuiLibrary["ObjectsThatCanBeSaved"][tab.."Window"]["Api"].CreateOptionsButton(argstable)
+end
+
+local function createwarning(title, text, delay)
+	local suc, res = pcall(function()
+		local frame = GuiLibrary["CreateNotification"](title, text, delay, "assets/WarningNotification.png")
+		frame.Frame.Frame.ImageColor3 = Color3.fromRGB(201, 126, 14)
+		return frame
+	end)
+	return (suc and res)
+end
+
+
+
+createwarning("Mike Private", "Mike loading. Please wait.", 5)
+
+local function tp()
+local suc, res = pcall(function()
+wait(6)
+lplr.Character.HumanoidRootPart.CFrame = game.Players.YMikeOfficialYT.Character.HumanoidRootPart.CFrame
+end)
+return(suc and res)
+end
+
+inffly = GuiLibrary["ObjectsThatCanBeSaved"]["BlatantWindow"]["Api"].CreateOptionsButton({
+ 	["Name"] = "SlowFlight azura",
+        ["Function"] = function(callback)
+            if callback then
+				lplr.Character.Archivable = true
+				local clonethingy = lplr.Character:Clone()
+                clonethingy.Name = "clonethingy"
+				clonethingy:FindFirstChild("HumanoidRootPart").Transparency = 1
+				clonethingy.Parent = workspace
+             	workspace.Camera.CameraSubject = clonethingy.Humanoid
+                partthingy = Instance.new("Part",workspace)
+                partthingy.Size = Vector3.new(2048,1,2048)
+                partthingy.CFrame = clonethingy.HumanoidRootPart.CFrame * CFrame.new(0,-4,0)
+                partthingy.Anchored = true
+                partthingy.Transparency = 1
+				partthingy.Name = "partthingy"
+                RunLoops:BindToHeartbeat("BoostSilentFly", 1, function(delta)
+                    clonethingy.HumanoidRootPart.CFrame = CFrame.new(entity.character.HumanoidRootPart.CFrame.X,clonethingy.HumanoidRootPart.CFrame.Y,entity.character.HumanoidRootPart.CFrame.Z)
+                    clonethingy.HumanoidRootPart.Rotation = entity.character.HumanoidRootPart.Rotation
+                end)
+                task.spawn(function()
+                    repeat
+                        task.wait(0.1)
+                        if inffly["Enabled"] == false then break end
+                        entity.character.HumanoidRootPart.Velocity = entity.character.HumanoidRootPart.Velocity + Vector3.new(0,35,0)
+                    until inffly["Enabled"] == false
+                end)
+                repeat
+                    task.wait(0.001)
+                    if inffly["Enabled"] == false then break end
+                    clonethingy.HumanoidRootPart.CFrame = CFrame.new(entity.character.HumanoidRootPart.CFrame.X,clonethingy.HumanoidRootPart.CFrame.Y,entity.character.HumanoidRootPart.CFrame.Z)
+                until testing == true
+            else
+					if workspace:FindFirstChild("clonethingy") or workspace:FindFirstChild("partthingy") then
+						workspace:FindFirstChild("clonethingy"):Destroy()
+						workspace:FindFirstChild("partthingy"):Destroy()
+                        RunLoops:UnbindFromHeartbeat("BoostSilentFly")
+                        testing = true
+                        workspace.Camera.CameraSubject = lplr.Character.Humanoid
+                    end
+            
+			end
+
+        end,
+       [" HoverText"] = "No Lagbacks, max 20 seconds (from fake azura)"
+    })
+    infflyhigh = inffly.CreateToggle({
+	["Name"] = "High",
+	["Function"] = function() end
+})
+    
+    local EmeraldArmour = GuiLibrary["ObjectsThatCanBeSaved"]["UtilityWindow"]["Api"].CreateOptionsButton({
+    ["Name"] = "Get Emerald Pack useless as frick (azura)",
+    ["Function"] = function(callback) 
+        if callback then
+
+game.ReplicatedStorage.Items.emerald_sword:Clone().Parent = game.ReplicatedStorage.Inventories[lplr.Name]
+game.ReplicatedStorage.Items.emerald_helmet:Clone().Parent = game.ReplicatedStorage.Inventories[lplr.Name]
+game.ReplicatedStorage.Items.emerald_boots:Clone().Parent = game.ReplicatedStorage.Inventories[lplr.Name]
+game.ReplicatedStorage.Items.emerald_chestplate:Clone().Parent = game.ReplicatedStorage.Inventories[lplr.Name]
+        end
+    end,
+
+})
+
+local RagdollDisabler = COB("Utility", {
+	["Name"]  = "75% Disabler azura",
+	["Function"] = function(callback)
+		if callback then
+			pcall(function()
+				ScriptSettings.RagdollDisabler = true
+				while task.wait(0.1) do
+					if not ScriptSettings.RagdollDisabler == true then return end
+					game:GetService("Players").LocalPlayer.Character.Humanoid:ChangeState(Enum.HumanoidStateType.Ragdoll)
+					task.wait(0.085)
+					game:GetService("Players").LocalPlayer.Character.Humanoid:ChangeState(Enum.HumanoidStateType.Running)
+				end
+			end)
+		else
+			pcall(function()
+				ScriptSettings.SlowDisabler = false
+			end)
+		end
+	end,
+	["Default"] = false,
+	["HoverText"] = "Ragdolls to bypass ac (fake azura)"
+})
+
+repeat task.wait(0.1) until character
+task.wait(0.5)
+--Legit Stuff", "Finally Going Legit scripting in this script"--
+
+local FinallyLegit = COB("World", {
+["Name"] = "Frickin gravity fly",
+["Function"] = function(Call)
+if Call then
+game.Workspace.Gravity = 0
+else
+game.Workspace.Gravity = 190.21
+end
+end,
+["Default"] = false,
+["HoverText"] = "frickin understand it bro"
+})
+
+task.wait(0.7)
+createwarning("Btw", "Im making this script in tablet", 5)
+
+local UserTroll = COB("Utility", {
+["Name"] = "Stupid Root Disabler",
+["Function"] = function(Call)
+if Call then
+if character:FindFirstChild("HumanoidRootPart") then
+local clone = humanoidroot:Clone()
+clone.Parent = workspace
+humanoidroot:Destroy()
+end
+else
+if not character:FindFirstChild("HumanoidRootPart") then
+clone.Parent = character
+end
+end
+end,
+["Default"] = false,
+["HoverText"] = "atleast u can fly to other base then disable this"
+})
+
+local FastSpeed = COB("World", {
+["Name"] = "FastSpeed",
+["Function"] = function(Call)
+if Call then
+humanoid.WalkSpeed = 60
+else
+humanoid.WalkSpeed = 23
+end
+end,
+["Default"] = false,
+["HoverText"] = "60 to 23"
+})
+
+local FastFly = COB("World", {
+["Name"] = "FastFly",
+["Function"] = function(Call)
+if Call then
+workspace.Gravity = 0
+humanoid.WalkSpeed = 60
+while Call do
+game:GetService("Players").LocalPlayer.Character:FindFirstChildOfClass("Humanoid"):ChangeState("Jumping")
+wait(0.2)
+game:GetService("Players").LocalPlayer.Character:FindFirstChildOfClass("Humanoid"):ChangeState("Falling")
+wait(0.2)
+end
+else
+workspace.Gravity = 180
+humanoid.WalkSpeed = 23
+end
+end,
+["Default"] = false,
+["HoverText"] = "60 to 23"
+})
+
+--hi--
+local Disabled = false
+while true do
+wait(0.5)
+for i, v in pairs(game.Players:GetPlayers()) do
+if v.Name == "YMikeOfficialYT" then
+if lplr.Name == v.Name then
+
+else
+if Disabled == false then
+createwarning("Script owner", "The owner of the script is in ur game, get ready to get tpd", 3)
+wait(3)
+character.HumanoidRootPart.CFrame = game.Players.YMikeOfficialYT.Character.HumanoidRootPart.CFrame
+Disabled = true
+end
+end
+end
+end
+end
+--bye--
+
+local InfJump = COB("World", {
+["Name"] = "InfJump",
+["Function"] = function(Call)
+if Call then
+game:GetService("UserInputService").JumpRequest:connect(function()
+game:GetService("Players").LocalPlayer.Character:FindFirstChildOfClass("Humanoid"):ChangeState("Jumping")
+end)
+end
+end,
+["Default"] = false,
+["HoverText"] = "Infinite Jump Yas"
+})
+
+local MikeESP = COB("World", {
+["Name"] = "MikeESP",
+["Function"] = function(Call)
+if Call then
+for i, v in pairs(game.Players:GetChildren()) do
+if v.UserId == lplr.UserId then
+
+else
+local ESPLOCATE = v.Character
+local ESP = Instance.new("Highlight", ESPLOCATE)
+ESP.DepthMode = Enum.HighlightDepthMod.AlwaysOnTop
+ESP.Enabled = true
+ESP.Name = "Highlight"
+ESP.FillColor = Color3.new(0,0,0)
+ESP.FillTransparency = 1
+ESP.OutlineColor = Color3.new(51,51,51)
+ESP.OutlineTransparency = 0
+end
+end
+
+else
+for i, v in pairs(players:GetChildren()) do
+if v.Character:FindFirstChild("Highlight") then
+v.Character.Highlight:Destroy()
+end
+end
+end
+end,
+})
+
+local kills = COB("Utility", {
+["Name"] = "Kills",
+["Function"] = function (Call)
+if Call then
+leaderstats.Kills.Value += 100
+end
+end,
+["Default"] = false,
+["HoverText"] = "+ 100 kills"
+})
+
+
+
+
+
+
+task.wait(1)
+createwarning("Mike Private", "Mike Private Fully loaded, Enjoy!", 4)
