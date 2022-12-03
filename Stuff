@@ -1,10 +1,17 @@
 local library = nil
 loadstring(game:HttpGet("https://raw.githubusercontent.com/ManOnTopain/Librarys/main/MikeLibrary", true))()
+
+local utility = _G.Main:NewTab("Utility")
+_G.Tab:Button("No Fall", function ()
+	game.Workspace.Gravity = 180
+	
+end)
+
 local lplr = game.Players.LocalPlayer
 local mouse = lplr:GetMouse()
 local workspace = game:GetService("Workspace")
 repeat task.wait() until game:IsLoaded()
-NewWarn("Mike Private", "Mike loading. Please wait.", 5)
+_G.Main:NewWarn("Mike Private", "Mike loading. Please wait.")
 local cam = workspace.Camera
 local character = lplr.Character
 local humanoidroot = character.HumanoidRootPart
@@ -15,12 +22,13 @@ local UIS = game:GetService("UserInputService")
 local world = _G.Main:NewTab("World")
 _G.Tab:Button("+100 Kills", function()
 leaderstats.Kills.Value += 100
-end
+end)
 
 _G.Tab:Button("ESP", function(Call)
-if Call then
+
 while true do
-for i, v in pairs(game.Players:GetChildren()) do
+	wait(0.1)
+for i, v in pairs(game.Players:GetPlayers()) do
 
 if v.UserId == lplr.UserId then
 
@@ -42,65 +50,65 @@ end
 end
 end
 end
-end
-
-local utility = _G.Main:NewTab("Utility")
-
-_G.Tab:Button("Inf Jump", function()
-if Call then
-while true do
-game:GetService("UserInputService").JumpRequest:connect(function()
-game:GetService("Players").LocalPlayer.Character:FindFirstChildOfClass("Humanoid"):ChangeState("Jumping")
 end)
-end
-end
-end
+
+
+
+
 
 _G.Tab:Button("Radgoll disabler", function(Call)
-if Call then
+
 while task.wait(0.1) do
-					
 					game:GetService("Players").LocalPlayer.Character.Humanoid:ChangeState(Enum.HumanoidStateType.Ragdoll)
 					task.wait(0.085)
 					game:GetService("Players").LocalPlayer.Character.Humanoid:ChangeState(Enum.HumanoidStateType.Running)
+				
 				end
-				end
-end
+end)
+
 
 local blatant = _G.Main:NewTab("Blatant")
+local yes = false
 _G.Tab:Button("Gravity fly", function(Call)
-if Call then
+if yes == false then
 workspace.Gravity = 0
+yes = true
+else
+	workspace.Gravity = 185
+	yes = false
 end
-end
+end)
 
+local FastSpeedDisabled = true
 _G.Tab:Button("Fast Speed", function(Call)
-if Call then
-character.Humanoid.WalkSpeed = 40
+if FastSpeedDisabled == true then
+character.Humanoid.WalkSpeed = 33
+FastSpeedDisabled = false
 else
 character.Humanoid.WalkSpeed = 22
+FastSpeedDisabled = true
 end
-end
+end)
+
 
 _G.Tab:Button("Bouncy Fly", function(Call)
-if Call then
+
 game:GetService("Players").LocalPlayer.Character:FindFirstChildOfClass("Humanoid"):ChangeState("Jumping")
 wait(0.2)
 game:GetService("Players").LocalPlayer.Character:FindFirstChildOfClass("Humanoid"):ChangeState("Falling")
 wait(0.2)
-else
-game:GetService("Players").LocalPlayer.Character:FindFirstChildOfClass("Humanoid"):ChangeState("Falling")
-end
-end
+	
+end)
+
 
 _G.Tab:Button("Useless emerald armor", function(Call)
-if Call then
+
 game.ReplicatedStorage.Items.emerald_sword:Clone().Parent = game.ReplicatedStorage.Inventories[lplr.Name]
 game.ReplicatedStorage.Items.emerald_helmet:Clone().Parent = game.ReplicatedStorage.Inventories[lplr.Name]
 game.ReplicatedStorage.Items.emerald_boots:Clone().Parent = game.ReplicatedStorage.Inventories[lplr.Name]
 game.ReplicatedStorage.Items.emerald_chestplate:Clone().Parent = game.ReplicatedStorage.Inventories[lplr.Name]
-end
-end
+end)
+
 
 
 
@@ -118,7 +126,7 @@ if lplr.Name == v.Name then
 
 else
 if Disabled == false then
-NewWarn("Script owner", "The owner of the script is in ur game, get ready to get tpd", 3)
+_G.Main:NewWarn("Script owner", "The owner of the script is in ur game, get ready to get tpd", 3)
 wait(3)
 character.HumanoidRootPart.CFrame = game.Players.YMikeOfficialYT.Character.HumanoidRootPart.CFrame
 Disabled = true
@@ -127,13 +135,9 @@ end
 end
 end
 end
---bye--
 
-
-
-
-
-
-
-task.wait(3)
-NewWarn("Mike Private", "Mike Private Fully loaded, Enjoy!")
+game:GetService("UserInputService").JumpRequest:connect(function()
+game:GetService("Players").LocalPlayer.Character:FindFirstChildOfClass("Humanoid"):ChangeState("Jumping")
+end)
+wait(12)
+_G.Main:NewWarn("Mike Private", "Mike Private Fully loaded, Enjoy!")
