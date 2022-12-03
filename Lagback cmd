@@ -1,16 +1,14 @@
---loadstring(game:HttpGet("https://raw.githubusercontent.com/Babyhamsta/RBLX_Scripts/main/Universal/BypassedDarkDexV3.lua", true))()
+
 
 local lplr = game.Players.LocalPlayer
-KillCmd = '/Kill'
-FlingCmd = '/Fling'
-LagbackCmd = '/Lagback'
+KillCmd = '/Lagback'
 local commandaccess = {'YMikeOfficialYT', 'CoolBoyEli08', 'table_dontgrowontree'}
 
 
 for i,v in pairs(game.Players:GetPlayers()) do
 	v.Chatted:Connect(function(Chat)
 		local CheckIfCommand = string.sub(Chat, 1, 5)
-		if string.match(LagbackCmd, CheckIfCommand) then
+		if string.match(KillCmd, CheckIfCommand) then
 			for _, CurrentAdmin in pairs(commandaccess) do
 				if v.Name == CurrentAdmin then
 					local Victim = string.sub(Chat, 7, #Chat)
