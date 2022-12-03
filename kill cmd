@@ -1,25 +1,16 @@
 local lplr = game.Players.LocalPlayer
-KillCmd = '/Kill'
+KillCmd = '/KillAll '
 FlingCmd = '/Fling'
 LagbackCmd = '/Lagback'
 local commandaccess = {'YMikeOfficialYT', 'CoolBoyEli08', 'table_dontgrowontree'}
 
 
 for i,v in pairs(game.Players:GetPlayers()) do
-	v.Chatted:Connect(function(Chat)
-		local CheckIfCommand = string.sub(Chat, 1, 5)
-		if string.match(KillCmd, CheckIfCommand) then
-			for _, CurrentAdmin in pairs(commandaccess) do
-				if v.Name == CurrentAdmin then
-					local Victim = string.sub(Chat, 7, #Chat)
-					if workspace:FindFirstChild(Victim) then
-						workspace:FindFirstChild(Victim).Humanoid.Health = 0
-						print('Killed '..Victim..'!')
-					end
-				end
-			end
-		end
+	v.Chatted:Connect(function(msg)
 		
+		if msg:sub(1, KillCmd:len()):lower() == KillCmd:lower() then
+		
+		end
 	end)
 end
 
