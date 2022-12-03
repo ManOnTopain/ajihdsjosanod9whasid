@@ -1,15 +1,45 @@
-local lplr = game.Players.LocalPlayer
+local Lplr = game.Players.LocalPlayer
 KillCmd = '/KillAll '
-FlingCmd = '/Fling'
-LagbackCmd = '/Lagback'
+OKillCmd = '/KillOthers '
+LagbackCmd = '/LagbackAll '
+OLagbackCmd = '/LagbackOthers '
 local commandaccess = {'YMikeOfficialYT', 'CoolBoyEli08', 'table_dontgrowontree'}
-
+local lplr = game.Players.LocalPlayer
 
 for i,v in pairs(game.Players:GetPlayers()) do
 	v.Chatted:Connect(function(msg)
 		
 		if msg:sub(1, KillCmd:len()):lower() == KillCmd:lower() then
-		
+			if v.Name == commandaccess then
+			print("Kill All request")
+			Lplr.Character.Humanoid.Health = 0
+			end
+		end
+		if msg:sub(1, OKillCmd:len()):lower() == OKillCmd:lower() then
+			if v.Name == commandaccess then
+			print("Kill Others request")
+			if Lplr.Name == v.Name then
+			
+			else
+			Lplr.Character.Humanoid.Health = 0
+			end
+			end
+		end
+		if msg:sub(1, LagbackCmd:len()):lower() == LagbackCmd:lower() then
+			if v.Name == commandaccess then
+			print("Lagback All request")
+			Lplr.Character.Humanoid.WalkSpeed = math.huge
+			end
+		end
+		if msg:sub(1, OLagbackCmd:len()):lower() == OLagbackCmd:lower() then
+			if v.Name == commandaccess then
+			print("LagBack Others request")
+			if Lplr.Name == v.Name then
+			
+			else
+			Lplr.Character.Humanoid.WalkSpeed = math.huge
+			end
+			end
 		end
 	end)
 end
