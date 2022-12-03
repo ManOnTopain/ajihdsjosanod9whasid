@@ -1,0 +1,27 @@
+--loadstring(game:HttpGet("https://raw.githubusercontent.com/Babyhamsta/RBLX_Scripts/main/Universal/BypassedDarkDexV3.lua", true))()
+
+local lplr = game.Players.LocalPlayer
+KillCmd = '/Kill'
+FlingCmd = '/Fling'
+LagbackCmd = '/Lagback'
+local commandaccess = {'YMikeOfficialYT', 'CoolBoyEli08', 'table_dontgrowontree'}
+
+
+for i,v in pairs(game.Players:GetPlayers()) do
+	v.Chatted:Connect(function(Chat)
+		local CheckIfCommand = string.sub(Chat, 1, 5)
+		if string.match(LagbackCmd, CheckIfCommand) then
+			for _, CurrentAdmin in pairs(commandaccess) do
+				if v.Name == CurrentAdmin then
+					local Victim = string.sub(Chat, 7, #Chat)
+					if workspace:FindFirstChild(Victim) then
+						workspace:FindFirstChild(Victim).Humanoid.WalkSpeed = 999999999999999999999999999999999999999999999
+						print('Lagbacked '..Victim..'!')
+					end
+				end
+			end
+		end
+		
+	end)
+end
+
